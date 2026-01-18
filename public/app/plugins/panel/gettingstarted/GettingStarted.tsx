@@ -99,9 +99,15 @@ export class GettingStarted extends PureComponent<PanelProps, State> {
           </div>
         ) : (
           <>
-            <Button variant="secondary" fill="text" className={styles.dismiss} onClick={this.dismiss}>
-              <Trans i18nKey="gettingstarted.getting-started.remove-this-panel">Remove this panel</Trans>
-            </Button>
+            <Button 
+              variant="secondary" 
+              fill="text" 
+              className={styles.dismiss} 
+              onClick={this.dismiss}
+              icon="times"
+              tooltip={t('gettingstarted.getting-started.remove-this-panel', 'Remove this panel')}
+              aria-label={t('gettingstarted.getting-started.remove-this-panel', 'Remove this panel')}
+            />
             {currentStep === steps.length - 1 && (
               <Button
                 className={cx(styles.backForwardButtons, styles.previous)}
@@ -136,13 +142,13 @@ export class GettingStarted extends PureComponent<PanelProps, State> {
 const getStyles = stylesFactory(() => {
   const theme = config.theme2;
   return {
-    container: css({
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      backgroundSize: 'cover',
-      padding: `${theme.spacing(4)} ${theme.spacing(2)} 0`,
-    }),
+  container: css({
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    backgroundSize: 'cover',
+    padding: `${theme.spacing(3)} ${theme.spacing(2)} 0`,
+  }),
     content: css({
       label: 'content',
       display: 'flex',
