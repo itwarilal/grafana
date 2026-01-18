@@ -5,7 +5,7 @@ import { PureComponent } from 'react';
 import { PanelProps } from '@grafana/data';
 import { Trans, t } from '@grafana/i18n';
 import { config, reportInteraction } from '@grafana/runtime';
-import { Button, Spinner, stylesFactory } from '@grafana/ui';
+import { IconButton, Spinner, stylesFactory } from '@grafana/ui';
 import { backendSrv } from 'app/core/services/backend_srv';
 import { contextSrv } from 'app/core/services/context_srv';
 import { getDashboardSrv } from 'app/features/dashboard/services/DashboardSrv';
@@ -99,9 +99,13 @@ export class GettingStarted extends PureComponent<PanelProps, State> {
           </div>
         ) : (
           <>
-            <Button variant="secondary" fill="text" className={styles.dismiss} onClick={this.dismiss}>
-              <Trans i18nKey="gettingstarted.getting-started.remove-this-panel">Remove this panel</Trans>
-            </Button>
+            <IconButton
+              name="times"
+              size="sm"
+              className={styles.dismiss}
+              onClick={this.dismiss}
+              tooltip={t('gettingstarted.getting-started.remove-this-panel', 'Remove this panel')}
+            />
             {currentStep === steps.length - 1 && (
               <Button
                 className={cx(styles.backForwardButtons, styles.previous)}
@@ -141,7 +145,7 @@ const getStyles = stylesFactory(() => {
       flexDirection: 'column',
       height: '100%',
       backgroundSize: 'cover',
-      padding: `${theme.spacing(4)} ${theme.spacing(2)} 0`,
+      padding: `${theme.spacing(3)} ${theme.spacing(2)} 0`,
     }),
     content: css({
       label: 'content',
@@ -202,7 +206,6 @@ const getStyles = stylesFactory(() => {
     }),
     dismiss: css({
       alignSelf: 'flex-end',
-      textDecoration: 'underline',
       marginBottom: theme.spacing(1),
     }),
     loading: css({
