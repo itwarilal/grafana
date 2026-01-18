@@ -99,8 +99,8 @@ export class GettingStarted extends PureComponent<PanelProps, State> {
           </div>
         ) : (
           <>
-            <Button variant="secondary" fill="text" className={styles.dismiss} onClick={this.dismiss}>
-              <Trans i18nKey="gettingstarted.getting-started.remove-this-panel">Remove this panel</Trans>
+            <Button variant="secondary" fill="text" className={styles.dismiss} onClick={this.dismiss} icon="times" tooltip="Remove this panel">
+              <span className={css`position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;`}>Remove this panel</span>
             </Button>
             {currentStep === steps.length - 1 && (
               <Button
@@ -141,7 +141,7 @@ const getStyles = stylesFactory(() => {
       flexDirection: 'column',
       height: '100%',
       backgroundSize: 'cover',
-      padding: `${theme.spacing(4)} ${theme.spacing(2)} 0`,
+      padding: `${theme.spacing(3)} ${theme.spacing(2)} 0`,
     }),
     content: css({
       label: 'content',
