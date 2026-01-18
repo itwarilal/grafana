@@ -768,7 +768,7 @@ export const TooltipPlugin2 = ({
         aria-atomic="true"
         ref={domRef}
       >
-        {isPinned && <CloseButton onClick={dismiss} />}
+        {isPinned && <CloseButton onClick={dismiss} tooltip="Remove this panel" />}
         {contents}
       </div>,
       portalRoot.current

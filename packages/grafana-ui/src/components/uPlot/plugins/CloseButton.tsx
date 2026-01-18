@@ -1,29 +1,47 @@
-// mostly copy/pasted from: public/app/core/components/CloseButton/CloseButton.tsx
 import { css } from '@emotion/css';
-import * as React from 'react';
-
+import { Icon, Tooltip, useStyles2 } from '@grafana/ui';
 import { GrafanaTheme2 } from '@grafana/data';
 
-import { IconButton } from '../../../components/IconButton/IconButton';
-import { useStyles2 } from '../../../themes/ThemeContext';
-
-type Props = {
+interface CloseButtonProps {
   onClick: () => void;
-  'aria-label'?: string;
-  style?: React.CSSProperties;
-};
+  tooltip?: string;
+}
 
-export const CloseButton = ({ onClick, 'aria-label': ariaLabel, style }: Props) => {
+export function CloseButton({ onClick, tooltip = 'Close' }: CloseButtonProps) {
   const styles = useStyles2(getStyles);
-  return (
-    <IconButton aria-label={ariaLabel ?? 'Close'} className={styles} name="times" onClick={onClick} style={style} />
-  );
-};
 
-const getStyles = (theme: GrafanaTheme2) =>
-  css({
+  return (
+    <Tooltip content={tooltip}>
+      <button
+        className={styles.closeButton}
+        onClick={onClick}
+        aria-label={tooltip}
+      >
+        <Icon name="times" size="sm" />
+      </button>
+    </Tooltip>
+  );
+}
+
+const getStyles = (theme: GrafanaTheme2) => ({
+  closeButton: css({
     position: 'absolute',
-    margin: '0px',
-    right: 5,
-    top: 6,
-  });
+    top: theme.spacing(0.5),
+    right: theme.spacing(0.5),
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+    padding: theme.spacing(0.5),
+    color: theme.colors.text.secondary,
+    height: theme.spacing(2.5),
+    width: theme.spacing(2.5),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: theme.shape.radius.default,
+    '&:hover': {
+      background: theme.colors.action.hover,
+      color: theme.colors.text.primary,
+    },
+  }),
+});
