@@ -5,7 +5,7 @@ import { PureComponent } from 'react';
 import { PanelProps } from '@grafana/data';
 import { Trans, t } from '@grafana/i18n';
 import { config, reportInteraction } from '@grafana/runtime';
-import { Button, Spinner, stylesFactory } from '@grafana/ui';
+import { Button, IconButton, Spinner, stylesFactory } from '@grafana/ui';
 import { backendSrv } from 'app/core/services/backend_srv';
 import { contextSrv } from 'app/core/services/context_srv';
 import { getDashboardSrv } from 'app/features/dashboard/services/DashboardSrv';
@@ -99,12 +99,11 @@ export class GettingStarted extends PureComponent<PanelProps, State> {
           </div>
         ) : (
           <>
-            <Button 
-              variant="secondary" 
-              fill="text" 
+            <IconButton 
+              name="times" 
+              size="sm" 
               className={styles.dismiss} 
               onClick={this.dismiss}
-              icon="times"
               tooltip={t('gettingstarted.getting-started.remove-this-panel', 'Remove this panel')}
               aria-label={t('gettingstarted.getting-started.remove-this-panel', 'Remove this panel')}
             />
@@ -147,7 +146,7 @@ const getStyles = stylesFactory(() => {
     flexDirection: 'column',
     height: '100%',
     backgroundSize: 'cover',
-    padding: `${theme.spacing(3)} ${theme.spacing(2)} 0`,
+    padding: `${theme.spacing(2)} ${theme.spacing(2)} 0`,
   }),
     content: css({
       label: 'content',
